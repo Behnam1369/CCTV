@@ -58,5 +58,23 @@
         }
       }
     }
+
+    .cams {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 0;
+      grid-template-rows: repeat(8, minmax(0, 1fr));
+      width: calc(100% - 252px);
+      height: calc(100% - 2px);
+      background-color: silver;
+      grid-gap: 1px;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: rgb(24, 23, 23);
+      }
+    }
   }
 }

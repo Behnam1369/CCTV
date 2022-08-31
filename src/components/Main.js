@@ -3,10 +3,12 @@ import React, { useState } from 'react';
 import rawDate from '../data';
 import style from './Main.module.scss';
 import { GoTriangleRight, GoTriangleDown } from 'react-icons/go';
+import Camera from './Camera';
 
 const Main = () => {
   const [data, setData] = useState(rawDate);
   const [searchValue, setSearchValue] = useState('');
+  // const [qty, setQty] = useState(64);
   const search = (val) => {
     setData(
       data.map((el) => {
@@ -61,7 +63,17 @@ const Main = () => {
             ))}
           </ul>
         </div>
-        <div className="cams" />
+        <div className={style.cams} >
+          {[...new Set([].concat(...data.map((el) => [...el.cams])))].filter((el, i)=> i < 64).map((cam) => {
+            return (
+              <Camera
+                key={cam.id}
+                title={cam.title}
+                url={cam.url}
+              />
+            );
+          })}
+        </div>
       </main>
     </div>
   );
