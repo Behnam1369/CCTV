@@ -1,6 +1,6 @@
-import "./App.css";
-import Main from "./components/Main";
-import React from "react";
+import './App.css';
+import React from 'react';
+import Main from './components/Main';
 
 export const AppContext = React.createContext();
 
