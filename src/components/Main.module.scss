@@ -1,5 +1,62 @@
-@import "../public.scss";
+@import '../public.scss';
 
-header {
-  background-color: slateblue;
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100%;
+
+  header {
+    background-color: $main-color;
+    display: flex;
+    align-items: center;
+    height: 50px;
+
+    h1 {
+      margin: 0;
+      font-family: Roboto, sans-serif;
+      color: white;
+    }
+  }
+
+  main {
+    display: flex;
+    flex-basis: 100%;
+    max-height: calc(100% - 50px);
+
+    .list {
+      background-color: $main-color;
+      color: white;
+      font-family: Roboto, sans-serif;
+      flex-basis: 250px;
+      display: flex;
+      flex-direction: column;
+
+      input {
+        width: 100%;
+        outline: none;
+        background-color: rgb(12, 13, 13);
+        border: none;
+        padding: 10px;
+        box-sizing: border-box;
+        color: white;
+      }
+
+      > ul {
+        padding: 10px;
+        flex-basis: calc(100% - 35px);
+        max-height: calc(100% - 35px);
+        overflow: auto;
+        margin: 0;
+
+        li {
+          list-style: none;
+
+          > ul {
+            padding-left: 25px;
+          }
+        }
+      }
+    }
+  }
 }
