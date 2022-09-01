@@ -8,7 +8,8 @@ import Camera from './Camera';
 const Main = () => {
   const [data, setData] = useState(rawDate);
   const [searchValue, setSearchValue] = useState('');
-  // const [qty, setQty] = useState(64);
+  const [tilesQty, setTilesQty] = useState(64);
+  const tiles = [1, 4, 16, 64];
   const search = (val) => {
     setData(
       data.map((el) => {
@@ -25,8 +26,23 @@ const Main = () => {
       })
     );
   };
+
+  const activeTileStyle = {
+    borderColor: 'yellow', 
+    color: 'yellow',
+  }
+
+  const camsStyle={
+    gridTemplateColumns: `repeat(${Math.sqrt(tilesQty)}, minmax(0, 1fr))`,
+    gridTemplateRows: `repeat(${Math.sqrt(tilesQty)}, minmax(0, 1fr))`,
+  }
+
+  const footerStrle = {
+    gridColumn: `1/${Math.sqrt(tilesQty) + 1 }`,
+  }
+
   return (
-    <div class={style.container}>
+    <div className={style.container}>
       <header>
         <h1>HOOSHE NO</h1>
       </header>
@@ -41,9 +57,15 @@ const Main = () => {
             {data.map((floor) => (
               <li key={floor.id}>
                 {floor.isOpen ? (
-                  <GoTriangleDown onClick={() => nodeToggle(floor.id)} />
+                  <GoTriangleDown
+                    onClick={() => nodeToggle(floor.id)}
+                    className={style.nodeIcon}
+                  />
                 ) : (
-                  <GoTriangleRight onClick={() => nodeToggle(floor.id)} />
+                  <GoTriangleRight
+                    onClick={() => nodeToggle(floor.id)}
+                    className={style.nodeIcon}
+                  />
                 )}
                 {floor.title}
                 {floor.isOpen && (
@@ -63,16 +85,22 @@ const Main = () => {
             ))}
           </ul>
         </div>
-        <div className={style.cams} >
-          {[...new Set([].concat(...data.map((el) => [...el.cams])))].filter((el, i)=> i < 64).map((cam) => {
-            return (
-              <Camera
-                key={cam.id}
-                title={cam.title}
-                url={cam.url}
-              />
-            );
-          })}
+        <div className={style.cams} style={camsStyle}>
+          {[...new Set([].concat(...data.map((el) => [...el.cams])))]
+            .filter((el, i) => i < tilesQty)
+            .map((cam) => {
+              return <Camera key={cam.id} title={cam.title} url={cam.url} />;
+            })}
+          <footer style={footerStrle}>
+            {tiles.map((qty) => (
+              <span
+                style={tilesQty === qty ? activeTileStyle : {}}
+                onClick={() => setTilesQty(qty)}
+              >
+                {qty}
+              </span>
+            ))}
+          </footer>
         </div>
       </main>
     </div>
