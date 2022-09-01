@@ -9,7 +9,6 @@ const Camera = (props) => {
         id="UstreamIframe"
         title={title}
         src={`${url}?html5ui&autoplay=1`}
-        name={url}
         allowFullScreen
         webkitallowfullscreen
       />
