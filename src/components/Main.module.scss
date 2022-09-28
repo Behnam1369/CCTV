@@ -11,6 +11,7 @@
     display: flex;
     align-items: center;
     height: 50px;
+    padding-left: 5px;
 
     h1 {
       margin: 0;
@@ -25,7 +26,8 @@
     max-height: calc(100% - 50px);
 
     .list {
-      background-color: $main-color;
+      // background-color: $main-color;
+      background-image: linear-gradient(to top , black, #001585);
       color: white;
       font-family: Roboto, sans-serif;
       flex-basis: 250px;
@@ -33,13 +35,21 @@
       flex-direction: column;
 
       input {
-        width: 100%;
+        width: 90%;
+        align-self: center;
         outline: none;
-        background-color: rgb(12, 13, 13);
+        background-color: rgb(255 255 255 / 38%);
         border: none;
         padding: 10px;
         box-sizing: border-box;
         color: white;
+        margin: 20px;
+        border-radius: 10px;
+        font-size: 18px;
+      }
+
+      input::placeholder {
+        color: silver;
       }
 
       > ul {
@@ -49,7 +59,7 @@
         overflow: auto;
         margin: 0;
 
-        li {
+        > li {
           list-style: none;
 
           .nodeIcon:hover {
@@ -59,6 +69,16 @@
 
           > ul {
             padding-left: 25px;
+            
+            > li {
+              cursor: pointer;
+              list-style: none;
+              user-select: none;
+            }
+
+            > li:hover {
+              color:gold;
+            }
           }
         }
       }
@@ -96,9 +116,9 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          width: 20px;
-          height: 20px;
-          font-size: 12px;
+          width: 30px;
+          height: 30px;
+          font-size: 22px;
         }
 
         span:hover {
