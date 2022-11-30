@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+import camerasReducer from './camerasReducer';
 
 const store = configureStore({
-  reducer: {},
+  reducer: camerasReducer,
 });
 
 export default store;

@@ -1,15 +1,18 @@
 /* eslint-disable */
 import React, { useState } from 'react';
-import rawDate from '../data';
+import streams from '../data';
 import style from './Main.module.scss';
 import { GoTriangleRight, GoTriangleDown } from 'react-icons/go';
 import Camera from './Camera';
+import CameraListItem from './CameraListItem';
+import { useSelector } from 'react-redux';
 
 const Main = () => {
-  const [data, setData] = useState(rawDate);
+  const [data, setData] = useState(streams);
   const [searchValue, setSearchValue] = useState('');
-  const [tilesQty, setTilesQty] = useState(64);
+  const [tilesQty, setTilesQty] = useState(16);
   const tiles = [1, 4, 16, 64];
+  const cams = useSelector((state) => state);
   const search = (val) => {
     setData(
       data.map((el) => {
@@ -18,7 +21,6 @@ const Main = () => {
     );
     setSearchValue(val);
   };
-
   const nodeToggle = (id) => {
     setData(
       data.map((el) => {
@@ -37,14 +39,16 @@ const Main = () => {
     gridTemplateRows: `repeat(${Math.sqrt(tilesQty)}, minmax(0, 1fr))`,
   }
 
-  const footerStrle = {
+  const footerStyle = {
     gridColumn: `1/${Math.sqrt(tilesQty) + 1 }`,
   }
 
   return (
-    <div className={style.container}>
+    <div
+      className={style.container}
+    >
       <header>
-        <h1>HOOSHE NO</h1>
+        <h1>EAGLE VIEW SURVEILLANCE SYSTEMS</h1>
       </header>
       <main>
         <div className={style.list}>
@@ -77,7 +81,11 @@ const Main = () => {
                           .includes(searchValue.toLowerCase())
                       )
                       .map((cam) => (
-                        <li key={cam.id}>{cam.title}</li>
+                        <CameraListItem
+                          key={cam.id}
+                          id={cam.id}
+                          title={cam.title}
+                        />
                       ))}
                   </ul>
                 )}
@@ -86,12 +94,19 @@ const Main = () => {
           </ul>
         </div>
         <div className={style.cams} style={camsStyle}>
-          {[...new Set([].concat(...data.map((el) => [...el.cams])))]
+          {cams
             .filter((el, i) => i < tilesQty)
             .map((cam) => {
-              return <Camera key={cam.id} title={cam.title} url={cam.url} />;
+              return (
+                <Camera
+                  key={cam.id}
+                  id={cam.id}
+                  title={cam.title}
+                  url={cam.url}
+                />
+              );
             })}
-          <footer style={footerStrle}>
+          <footer style={footerStyle}>
             {tiles.map((qty) => (
               <span
                 style={tilesQty === qty ? activeTileStyle : {}}
