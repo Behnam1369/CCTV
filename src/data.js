@@ -26,7 +26,7 @@ const streams = [
       {
         id: 5,
         title: 'Cam 5 - Parking',
-        url: 'https://www.dailymotion.com/embed/video/x5m8rwz',
+        url: 'https://www.dailymotion.com/embed/video/x8j4dde',
       },
       {
         id: 6,
