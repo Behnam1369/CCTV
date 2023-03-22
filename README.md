@@ -3,7 +3,7 @@ A CCTV monitoring UI system that allows users to view live video feeds from mult
 
 
 # screenshot 
-![Screenshot1](public/screenshot.jpg)
+![Screenshot1](public/Screenshot.jpg)
 
 
 ## Technologies
