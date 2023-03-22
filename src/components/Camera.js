@@ -44,16 +44,15 @@ const Camera = (props) => {
         className={style.overlay}
         ref={drop}
         // eslint-disable-next-line no-nested-ternary
-        style={isOver ? { backgroundColor: '#040473a3' }
-          : timeLeft ? { backgroundColor: '#040473ff' } : {}}
+        style={{ backgroundColor: isOver ? '#040473a3' : timeLeft ? '#040473ff' : '' }}
       >
         {isOver && <h1>Drop here</h1>}
-        { timeLeft && (
-        <h1>
-          {`Loading ${title}`}
-          <br />
-          {timeLeft}
-        </h1>
+        {timeLeft > 0 && (
+          <h1>
+            {`Loading ${title}`}
+            <br />
+            {timeLeft}
+          </h1>
         )}
       </div>
     </div>
